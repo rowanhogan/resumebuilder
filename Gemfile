@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.2.0'
+
 gem 'pdfkit'
 gem 'haml'
 gem 'linkedin-scraper', github: 'rowanhogan/linkedin-scraper', branch: 'master'

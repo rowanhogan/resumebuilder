@@ -1,8 +1,8 @@
 require 'rubygems'
 require 'sinatra'
-require "haml"
-require "linkedin_scraper"
-require "pdfkit"
+require 'haml'
+require 'linkedin_scraper'
+require 'pdfkit'
 require 'tilt/haml'
 
 get "/" do
