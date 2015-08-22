@@ -1,0 +1,98 @@
+!!!5
+%html{ "ng-app" => "clientApp", "ng-controller" => "ResumeCtrl" }
+  %head
+    %title= "#{@resume.name} | Resume Builder"
+    %meta{name: "pdfkit-page_size", content: "Letter"}
+    %link{ href: 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700', rel: 'stylesheet', type: 'text/css' }
+    %link{ href: "/style.css", rel: "stylesheet" }
+    %script{ src: 'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js' }
+    %script{ src: '/scripts.js' }
+
+  %body.resume{ class: @preview ? 'preview' : nil, style: @extras && @extras[:font] ? "font-family: #{@extras[:font].gsub('+', ' ')};" : nil }
+
+    - if @preview
+      %form.form{ action: "/render/#{@username}", method: "post" }
+
+        %fieldset.contact-details
+          %legend Contact Details
+
+          %label Email
+          %input{ name: "extras[email]", type: "text", "ng-model" => "email" }
+
+          %label Phone
+          %input{ name: "extras[phone]", type: "text", "ng-model" => "phone" }
+
+        %fieldset
+          %legend Design
+
+          %label Font
+          %select{ name: "extras[font]", "ng-model" => "font", "ng-options" => "option.name for option in fonts track by option.value" }
+            %option{ value: '', selected: 'selected' } Default
+
+        %button{ type: 'submit' } Generate PDF
+
+    .wrapper{ "ng-style" => "{ 'font-family' : font.name }" }
+      .page
+        .contact-details-block
+          %h1= @resume.name
+          %h3= @resume.title
+
+          - if @extras
+            .email= @extras[:email]
+            .phone= @extras[:phone]
+
+            %link{ href: "http://fonts.googleapis.com/css?family=#{@extras[:font]}", rel: 'stylesheet', type: 'text/css' }
+
+          - else
+            .email{ "ng-show" => "email", "ng-cloak" => true } {{ email }}
+            .email.field-preview{ "ng-show" => "!email", "ng-cloak" => true } Email
+
+            .phone{ "ng-show" => "phone", "ng-cloak" => true } {{ phone }}
+            .phone.field-preview{ "ng-show" => "!phone", "ng-cloak" => true } Phone
+
+            %link{ "ng-href" => "http://fonts.googleapis.com/css?family={{font.value}}", "ng-if" => "font", rel: 'stylesheet', type: 'text/css' }
+
+      .page
+        %h2 Work
+
+        %ol
+          - @resume.past_companies.each do |company|
+            %li
+              %h4
+                %a{ href: company[:linkedin_company_url] }= company[:company]
+                %em
+                  = company[:start_date].strftime("%b %Y") if company[:start_date]
+                  = " - "
+                  = company[:end_date].strftime("%b %Y") if company[:end_date]
+
+              %h5= company[:title]
+
+              .description
+                %small= company[:description_html]
+
+
+        - if @resume.education.any?
+          %h2 Education
+
+          %ol.no-dot
+            - @resume.education.each do |item|
+              %li
+                %h4
+                  = item[:name]
+                  %em= item[:period]
+
+                %h5= item[:description]
+
+
+        - if @resume.volunteering.any?
+          %h2 Volunteering
+
+          %ol
+            - @resume.volunteering.each do |item|
+              %li
+                %h4
+                  = item[:name]
+                  %em= item[:period]
+
+                %h5= item[:description]
+
