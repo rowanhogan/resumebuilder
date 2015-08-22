@@ -1,13 +1,9 @@
-
 require 'rubygems'
 require 'sinatra'
 require "haml"
 require "linkedin_scraper"
 require "pdfkit"
-require "pry"
 require 'tilt/haml'
-
-enable :sessions
 
 get "/" do
   haml :index
