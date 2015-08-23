@@ -3,6 +3,7 @@ require 'sinatra'
 require 'haml'
 require 'linkedin_scraper'
 require 'pdfkit'
+require 'pry'
 require 'tilt/haml'
 
 get "/" do
