@@ -4,7 +4,7 @@ ruby '2.0.0'
 
 gem 'pdfkit'
 gem 'haml'
-gem 'linkedin-scraper', github: 'rowanhogan/linkedin-scraper', branch: 'master'
+gem 'linkedin-scraper'
 gem 'pry'
 gem 'sinatra'
 gem 'wkhtmltopdf-binary-edge'
