@@ -83,16 +83,16 @@
 
                 %h5= item[:description]
 
+        -#
+          - if @resume.volunteering.any?
+            %h2 Volunteering
 
-        - if @resume.volunteering.any?
-          %h2 Volunteering
+            %ol
+              - @resume.volunteering.each do |item|
+                %li
+                  %h4
+                    = item[:name]
+                    %em= item[:period]
 
-          %ol
-            - @resume.volunteering.each do |item|
-              %li
-                %h4
-                  = item[:name]
-                  %em= item[:period]
-
-                %h5= item[:description]
+                  %h5= item[:description]
 

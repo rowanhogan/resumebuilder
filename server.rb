@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'haml'
-require 'linkedin_scraper'
+require 'linkedin-scraper'
 require 'pdfkit'
 require 'pry'
 require 'tilt/haml'
