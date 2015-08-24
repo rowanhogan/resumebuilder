@@ -24,8 +24,23 @@ end
 
 post '/render/:username' do
   @username = params[:username]
+  @resume = ::Linkedin::Profile.get_profile("http://www.linkedin.com/in/#{@username}")
   @extras = params[:extras]
-  @preview = false
+
+  if @resume
+    @preview = false
+    response.headers['Content-Type'] = 'application/pdf'
+
+    kit = PDFKit.new(haml(:resume))
+    kit.stylesheets << File.open(settings.public_folder.to_s + '/style.css')
+    kit.stylesheets << File.open(settings.public_folder.to_s + '/fonts.css')
+    kit.to_pdf
+  else
+    redirect '/'
+  end
+end
+
+get '/pdf_test' do
   response.headers['Content-Type'] = 'application/pdf'
 
   kit = PDFKit.new(haml(:resume))
