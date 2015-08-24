@@ -1,7 +1,7 @@
 !!!5
 %html{ "ng-app" => "clientApp", "ng-controller" => "ResumeCtrl" }
   %head
-    %title= "#{@resume.name} | Resume Builder"
+    %title= "Resume Builder"
     %meta{name: "pdfkit-page_size", content: "Letter"}
     %link{ href: 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700', rel: 'stylesheet', type: 'text/css' }
     %link{ href: "/style.css", rel: "stylesheet" }
@@ -34,8 +34,7 @@
     .wrapper{ "ng-style" => "{ 'font-family' : font.name }" }
       .page
         .contact-details-block
-          %h1= @resume.name
-          %h3= @resume.title
+          %h1 Test
 
           - if @extras
             .email= @extras[:email]
@@ -51,48 +50,4 @@
             .phone.field-preview{ "ng-show" => "!phone", "ng-cloak" => true } Phone
 
             %link{ "ng-href" => "http://fonts.googleapis.com/css?family={{font.value}}", "ng-if" => "font", rel: 'stylesheet', type: 'text/css' }
-
-      .page
-        %h2 Work
-
-        %ol
-          - @resume.past_companies.each do |company|
-            %li
-              %h4
-                %a{ href: company[:linkedin_company_url] }= company[:company]
-                %em
-                  = company[:start_date].strftime("%b %Y") if company[:start_date]
-                  = " - "
-                  = company[:end_date].strftime("%b %Y") if company[:end_date]
-
-              %h5= company[:title]
-
-              .description
-                %small= company[:description_html]
-
-
-        - if @resume.education.any?
-          %h2 Education
-
-          %ol.no-dot
-            - @resume.education.each do |item|
-              %li
-                %h4
-                  = item[:name]
-                  %em= item[:period]
-
-                %h5= item[:description]
-
-        -#
-          - if @resume.volunteering.any?
-            %h2 Volunteering
-
-            %ol
-              - @resume.volunteering.each do |item|
-                %li
-                  %h4
-                    = item[:name]
-                    %em= item[:period]
-
-                  %h5= item[:description]
 
