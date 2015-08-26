@@ -41,9 +41,9 @@
   <div class="wrapper">
 
     <style type="text/css">
-      .page { font-family: {{ bodyFont.name }}; }
+      .page { font-family: {{ bodyFont.name || 'Source Sans Pro' }}; }
 
-      .page h1, .page h2, .page h3, .page h4 { font-family: {{ headingFont.name }}; }
+      .page h1, .page h2, .page h3, .page h4 { font-family: {{ headingFont.name || 'Source Sans Pro' }}; }
     </style>
 
     <div class="page contact-details">
@@ -164,11 +164,7 @@
       </section>
     </div>
 
-    <!-- <link ng-href="http://fonts.googleapis.com/css?family={{bodyFont.value}}" ng-if="bodyFont" rel="stylesheet" type="text/css"></link> -->
-    <!-- <link ng-href="http://fonts.googleapis.com/css?family={{headingFont.value}}" ng-if="headingFont" rel="stylesheet" type="text/css"></link> -->
-
-    <link rel="stylesheet" type="text/css" href="http://dl.dropboxusercontent.com/u/9721264/pdf.css">
-    <link rel="stylesheet" type="text/css" href="http://dl.dropboxusercontent.com/u/9721264/fonts.css">
-
+    <link rel="stylesheet" type="text/css" href="http://rowanhogan.github.io/resumebuilder/pdf.css">
+    <!-- <link rel="stylesheet" type="text/css" href="http://rowanhogan.github.io/resumebuilder/fonts.css"> -->
   </div>
 </div>
