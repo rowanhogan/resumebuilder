@@ -84,10 +84,6 @@ h1:before, h2:before {
   width: 1em;
 }
 
-h2 {
-  margin-bottom: 2em;
-}
-
 fieldset {
   padding: 0;
   margin: 0 0 .75em;
@@ -235,11 +231,6 @@ button.print-button {
 .button.active {
   background-color: transparent;
   border: thin solid white;
-}
-
-ol li {
-  margin: 2em 0;
-  page-break-inside: avoid;
 }
 
 @media screen {
@@ -434,16 +425,6 @@ button.toggle-section {
   margin: -.5em;
 }
 
-img.profile-img {
-  border-radius: 50%;
-  width: 10em;
-  margin: 0 0 2em;
-}
-
-img.profile-img.hidden {
-  display: none;
-}
-
 .loading-wrapper, .loading-wrapper * {
   box-sizing: border-box;
 }
@@ -470,6 +451,7 @@ img.profile-img.hidden {
   top: 50%;
   left: 50%;
   z-index: 1000;
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   margin: -1em 0 0;
   width: 8em;
@@ -496,6 +478,16 @@ section.hidden {
 }
 
 @keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .5;
+  }
+}
+
+@-webkit-keyframes blink {
   0%, 100% {
     opacity: 1;
   }

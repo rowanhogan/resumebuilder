@@ -25,6 +25,10 @@ h1 {
   font-size: 2.5em;
 }
 
+h2 {
+  margin-bottom: 2em;
+}
+
 h2.title {
   font-weight: lighter;
   font-size: 1.25em;
@@ -37,6 +41,16 @@ h2.title:before {
 
 h3.contact {
   font-size: 1.25em;
+}
+
+img.profile-img {
+  border-radius: 50%;
+  width: 10em;
+  margin: 0 0 2em;
+}
+
+img.profile-img.hidden {
+  display: none;
 }
 
 h4 > em {
@@ -74,6 +88,11 @@ p {
   font-size: 90%;
   margin: .25em 0;
   line-height: 1.4em;
+}
+
+ol li {
+  margin: 2em 0;
+  page-break-inside: avoid;
 }
 
 body .page {
