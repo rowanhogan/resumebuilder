@@ -26,7 +26,7 @@ h1 {
 }
 
 h2 {
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
 
 h2.title {
@@ -63,6 +63,10 @@ h4 > em {
   white-space: nowrap;
 }
 
+h4 {
+  margin: 0 0 .75em;
+}
+
 h4 + h5 {
   font-size: 100%;
   font-weight: normal;
@@ -84,15 +88,20 @@ ul {
   font-size: 90%;
 }
 
+ul li, ol li {
+  margin: 1.5em 0;
+  page-break-inside: avoid;
+}
+
+ul.inline li, ol.inline li {
+  display: inline-block;
+  margin: 0 .75em .75em 0;
+}
+
 p {
   font-size: 90%;
   margin: .25em 0;
   line-height: 1.4em;
-}
-
-ol li {
-  margin: 2em 0;
-  page-break-inside: avoid;
 }
 
 body .page {
@@ -110,7 +119,7 @@ body .page.contact-details {
 
 section {
   page-break-inside: avoid;
-  margin-bottom: 4em;
+  margin-bottom: 3em;
 }
 
 section:last-of-type {
@@ -130,12 +139,14 @@ section:last-of-type {
 table.contact-links {
   margin: 2em 0;
   border-spacing: 0;
+  text-align: left;
 }
 
 table.contact-links th,
 table.contact-links td {
   padding: 0;
   line-height: 1.5em;
+  text-align: left;
 }
 
 table.contact-links td {
@@ -179,6 +190,14 @@ a {
   body .page h2:first-of-type { margin-top: -.5em; }
 }
 
+.resume .summary-section {
+  margin: 1em 0;
+}
+
+.summary-section h3.summary {
+  font-weight: normal;
+}
+
 @page {
   size: auto;
   margin: 20mm 0 20mm 0;
@@ -193,5 +212,5 @@ a {
 }
 
 .render .page h2:first-of-type {
-  margin-top: -2em;
+  margin-top: -2em !important;
 }

@@ -502,6 +502,16 @@ section.hidden {
   button.toggle-form {
     display: none;
   }
+
+  .form .button.back-button {
+    position: absolute;
+    bottom: 1em;
+    left: 2em;
+    width: auto;
+    right: 2em;
+    background-color: transparent;
+    border: thin solid white;
+  }
 }
 
 @media screen and (min-width: 1150px) {
