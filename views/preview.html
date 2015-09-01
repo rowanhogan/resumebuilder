@@ -48,11 +48,17 @@
 
     <div class="page contact-details">
 
-      <img class="profile-img" ng-src="{{ resume.picture }}" ng-class="{ 'hidden' : pictureHidden }" ng-if="resume.picture">
+      <img ng-cloak class="profile-img" ng-src="{{ resume.picture }}" ng-class="{ 'hidden' : pictureHidden }" ng-if="resume.picture">
 
       <h1><a href="#" editable-text="resume.name">{{ resume.name || "Full name" }}</a></h1>
 
       <h2 class="title"><a href="#" editable-text="resume.title">{{ resume.title || "Title / position" }}</a></h2>
+
+      <section class="summary-section" ng-class="{ 'hidden' : summaryHidden }" ng-if="resume.summary.length">
+        <button class="toggle-section" ng-click="toggle('summaryHidden')">{{ booleanLabel('summaryHidden') }}</button>
+
+        <h3 class="summary" editable-textarea="resume.summary"> {{ resume.summary }}</h3>
+      </section>
 
       <h3 class="contact"><a ng-href="mailto:{{resume.email}}" editable-text="resume.email">{{ resume.email || "name@example.com" }}</a></h3>
 
@@ -162,9 +168,24 @@
           <label ng-repeat="skill in resume.skills" editable-text="skill">{{ skill }}</label>
         </figure>
       </section>
+
+      <section ng-class="{ 'hidden' : languagesHidden }" ng-if="resume.languages.length">
+        <button class="toggle-section" ng-click="toggle('languagesHidden')">{{ booleanLabel('languagesHidden') }}</button>
+
+        <h2 editable-text="languagesTitle"> {{ languagesTitle || 'Languages' }}</h2>
+
+        <ol class="inline">
+          <li ng-repeat="item in resume.languages">
+            <h4>
+              <span editable-text="item.language">{{ item.language }}</span>
+            </h4>
+
+            <h5 editable-text="item.proficiency">{{ item.proficiency }}</h5>
+          </li>
+        </ol>
+      </section>
     </div>
 
-    <link rel="stylesheet" type="text/css" href="http://rowanhogan.github.io/resumebuilder/pdf.css">
-    <!-- <link rel="stylesheet" type="text/css" href="http://rowanhogan.github.io/resumebuilder/fonts.css"> -->
+    <link id="pdf-css" rel="stylesheet" type="text/css" href="/styles/pdf.css">
   </div>
 </div>
