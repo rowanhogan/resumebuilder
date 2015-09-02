@@ -1,4 +1,4 @@
-<div class="resume preview">
+<div class="preview">
   <form class="form" ng-class="{ 'visible' : designVisible }" method="post" action="http://resume-pdf-renderer.herokuapp.com/render" ng-submit="prepareAndSubmitForm($event)">
     <input type="hidden" name="html" value="" />
     <input type="hidden" name="include_custom_fonts" value="true" />
@@ -24,6 +24,14 @@
             <option selected="selected" value="">Default</option>
           </select>
         </div>
+
+        <div class="form-field">
+          <label>Theme</label>
+          <select ng-model="theme" ng-change="togglePrintCss()">
+            <option selected="selected" value="">Minimal</option>
+            <option value="condensed">Condensed</option>
+          </select>
+        </div>
       </div>
     </fieldset>
 
@@ -39,153 +47,6 @@
   </button>
 
   <div class="wrapper">
-
-    <style type="text/css">
-      .page { font-family: {{ bodyFont.name || 'Source Sans Pro' }}; }
-
-      .page h1, .page h2, .page h3, .page h4 { font-family: {{ headingFont.name || 'Source Sans Pro' }}; }
-    </style>
-
-    <div class="page contact-details">
-
-      <img ng-cloak class="profile-img" ng-src="{{ resume.picture }}" ng-class="{ 'hidden' : pictureHidden }" ng-if="resume.picture">
-
-      <h1><a href="#" editable-text="resume.name">{{ resume.name || "Full name" }}</a></h1>
-
-      <h2 class="title"><a href="#" editable-text="resume.title">{{ resume.title || "Title / position" }}</a></h2>
-
-      <section class="summary-section" ng-class="{ 'hidden' : summaryHidden }" ng-if="resume.summary.length">
-        <button class="toggle-section" ng-click="toggle('summaryHidden')">{{ booleanLabel('summaryHidden') }}</button>
-
-        <h3 class="summary" editable-textarea="resume.summary"> {{ resume.summary }}</h3>
-      </section>
-
-      <h3 class="contact"><a ng-href="mailto:{{resume.email}}" editable-text="resume.email">{{ resume.email || "name@example.com" }}</a></h3>
-
-      <h3 class="contact"><a ng-href="tel:{{resume.phone}}" editable-text="resume.phone">{{ resume.phone || "+1 123 456-7890" }}</a></h3>
-
-      <h3 class="contact"><a ng-href="http://maps.google.com/?q={{resume.address}}" editable-text="resume.address">{{ resume.address || "123 Example St Toronto" }}</a></h3>
-
-      <table class="contact-links">
-        <tr ng-repeat="website in resume.websites">
-          <th editable-text="website.name">{{ website.name || "Website Name" }}</th>
-          <td>
-            <a ng-href="{{website.link}}" editable-text="website.link">{{ website.link || "example.com" }}</a>
-          </td>
-          <td class="hidden"><button class="remove-button" ng-click="removeWebsite(link)">Remove</button></td>
-        </tr>
-      </table>
-
-      <button class="add-link" ng-click="addWebsite()">Add Link</button>
-
-    </div>
-
-    <div class="page work-history" ng-class="{ 'hidden' : workHidden }">
-      <section ng-class="{ 'hidden' : workHidden }">
-        <button class="toggle-section" ng-click="toggle('workHidden')">{{ booleanLabel('workHidden') }}</button>
-
-        <h2 editable-text="workTitle"> {{ workTitle || 'Work' }}</h2>
-
-        <ol>
-          <li ng-repeat="job in resume.current_companies">
-            <h4>
-              <span editable-text="job.title">{{ job.title }}</span>
-              <em>{{ job.start_date | date : 'MMM y' }} -</em>
-            </h4>
-
-            <h5 editable-text="job.company">{{ job.company }}</h5>
-
-            <div class="description">
-              <small editable-textarea="job.description_html" ng-bind-html="job.description_html"></small>
-            </div>
-          </li>
-
-          <li class="document-item" ng-repeat="job in resume.past_companies">
-            <h4>
-              <span editable-text="job.title">{{ job.title }}</span>
-              <em>{{ job.start_date | date : 'MMM y' }} - {{ job.end_date | date : 'MMM y' }}</em>
-            </h4>
-
-            <h5 editable-text="job.company">{{ job.company }}</h5>
-
-            <div class="description">
-              <small editable-textarea="job.description_html" ng-bind-html="job.description_html"></small>
-            </div>
-          </li>
-        </ol>
-      </section>
-    </div>
-
-    <div class="page other-history" ng-class="{ 'hidden' : educationHidden && volunteeringHidden && skillsHidden }">
-      <section ng-class="{ 'hidden' : educationHidden }" ng-if="resume.education.length">
-        <button class="toggle-section" ng-click="toggle('educationHidden')"> {{ booleanLabel('educationHidden') }}</button>
-
-        <h2 editable-text="educationTitle"> {{ educationTitle || 'Education' }}</h2>
-
-        <ol>
-          <li ng-repeat="item in resume.education">
-            <h4>
-              <span editable-text="item.degree">{{ item.degree }}</span>
-              <em editable-text="item.period">{{ item.period }}</em>
-            </h4>
-
-            <h5 editable-text="item.name">{{ item.name }}</h5>
-
-            <div class="description">
-              <small editable-textarea="item.description" ng-bind-html="item.description"></small>
-            </div>
-          </li>
-        </ol>
-      </section>
-
-      <section ng-class="{ 'hidden' : volunteeringHidden }" ng-if="resume.volunteering.length">
-        <button class="toggle-section" ng-click="toggle('volunteeringHidden')">{{ booleanLabel('volunteeringHidden') }}</button>
-
-        <h2 editable-text="volunteeringTitle"> {{ volunteeringTitle || 'Volunteering' }}</h2>
-
-        <ol>
-          <li ng-repeat="item in resume.volunteering">
-            <h4>
-              <span editable-text="item.title">{{ item.title }}</span>
-              <em editable-text="item.period">{{ item.period }}</em>
-            </h4>
-
-            <h5 editable-text="item.name">{{ item.name }}</h5>
-
-            <div class="description">
-              <small editable-textarea="item.description" ng-bind-html="item.description"></small>
-            </div>
-          </li>
-        </ol>
-      </section>
-
-      <section ng-class="{ 'hidden' : skillsHidden }" ng-if="resume.skills.length">
-        <button class="toggle-section" ng-click="toggle('skillsHidden')">{{ booleanLabel('skillsHidden') }}</button>
-
-        <h2 editable-text="skillsTitle"> {{ skillsTitle || 'Skills' }}</h2>
-
-        <figure class="skills">
-          <label ng-repeat="skill in resume.skills" editable-text="skill">{{ skill }}</label>
-        </figure>
-      </section>
-
-      <section ng-class="{ 'hidden' : languagesHidden }" ng-if="resume.languages.length">
-        <button class="toggle-section" ng-click="toggle('languagesHidden')">{{ booleanLabel('languagesHidden') }}</button>
-
-        <h2 editable-text="languagesTitle"> {{ languagesTitle || 'Languages' }}</h2>
-
-        <ol class="inline">
-          <li ng-repeat="item in resume.languages">
-            <h4>
-              <span editable-text="item.language">{{ item.language }}</span>
-            </h4>
-
-            <h5 editable-text="item.proficiency">{{ item.proficiency }}</h5>
-          </li>
-        </ol>
-      </section>
-    </div>
-
-    <link id="pdf-css" rel="stylesheet" type="text/css" href="/styles/pdf.css">
+    <div class="resume" ng-class="theme" ng-include="'views/_resume.html'"></div>
   </div>
 </div>

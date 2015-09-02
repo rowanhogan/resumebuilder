@@ -105,12 +105,13 @@ legend {
 
 .toggle-form {
   position: fixed;
+  top: 100vh;
   left: 0;
-  bottom: 0;
   z-index: 10;
   margin: 1.5em;
-  transition: bottom .25s ease;
-  -webkit-transition: bottom .25s ease;
+  margin-top: -3.5em;
+  transition: top .25s ease;
+  -webkit-transition: top .25s ease;
 }
 
 input, button, textarea, select, table {
@@ -508,9 +509,11 @@ section.hidden {
     bottom: 1em;
     left: 2em;
     width: auto;
-    right: 2em;
+    right: auto;
     background-color: transparent;
-    border: thin solid white;
+    border: 0;
+    text-align: left;
+    padding-left: 0;
   }
 }
 
@@ -568,12 +571,12 @@ section.hidden {
   .preview .form.visible {
     -webkit-transform: translateY(0);
     transform: translateY(0);
-    height: 15.75em;
   }
 
   .preview .form.visible + .toggle-form {
-    bottom: 11.75em;
+    top: 5em;
     z-index: 100;
+    background: #aaa;
   }
 
   .preview {
