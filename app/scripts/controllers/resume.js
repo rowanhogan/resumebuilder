@@ -62,7 +62,7 @@ angular.module('clientApp')
     $scope.positions = $scope.resume.current_companies.concat($scope.resume.past_companies);
 
     angular.extend($scope, {
-      pictureHidden: true,
+      pictureHidden: false,
       workTitle: "Work",
       educationTitle: "Education",
       volunteeringTitle: "Volunteering",
