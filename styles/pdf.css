@@ -146,6 +146,7 @@ table.contact-links {
   margin: 2em 0;
   border-spacing: 0;
   text-align: left;
+  max-width: 100%:;
 }
 
 table.contact-links th,
@@ -161,6 +162,7 @@ table.contact-links td {
 
 table.contact-links td a {
   border-bottom: thin solid;
+  word-break: break-all;
 }
 
 figure.skills {
@@ -298,6 +300,10 @@ a {
   float: left;
   margin-right: 1.5em;
   margin-bottom: 1.5em;
+}
+
+.condensed.resume table.contact-links {
+  font-size: 90%;
 }
 
 .condensed.resume .page figure.skills label {
