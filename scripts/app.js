@@ -144,7 +144,7 @@ clientApp.controller('ResumeCtrl', function($scope, $rootScope, $state, preloade
 
   $timeout(function() {
     resizeDocument();
-    $('.wrapper').append('<link rel="stylesheet" type="text/css" href="http://rowanhogan.github.io/resumebuilder/fonts.css">');
+    $('.wrapper').append('<link rel="stylesheet" type="text/css" href="http://rowanhogan.github.io/resumebuilder/styles/fonts.css">');
 
     $(window).resize(function() {
       resizeDocument();
@@ -206,6 +206,14 @@ clientApp.controller('ResumeCtrl', function($scope, $rootScope, $state, preloade
     removeItemFromArray(item, $scope.resume.past_companies);
   }
 
+  $scope.togglePrintCss = function () {
+    if ($scope.theme == 'condensed') {
+      $('#theme-css').html('@page { margin: 0mm; }');
+    } else {
+      $('#theme-css').html('@page { margin: 20mm 0 20mm 0; }');
+    }
+  }
+
   $scope.prepareAndSubmitForm = function (e) {
     e.preventDefault();
 
@@ -216,7 +224,7 @@ clientApp.controller('ResumeCtrl', function($scope, $rootScope, $state, preloade
     $wrapper.find('.hidden').remove();
     $wrapper.find('form, button, input').remove();
     $wrapper.find('#pdf-css').attr('href', pdf_css_url)
-    $wrapper.addClass('render');
+    $wrapper.find('.resume').addClass('render');
 
     $form.find('input[name="html"]').val( $wrapper.html() );
     $form.submit();

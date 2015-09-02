@@ -5,11 +5,16 @@ html {
   text-align: left;
 }
 
+.resume {
+  font-size: 11pt;
+}
+
 h1, h2 {
   position: relative;
   padding-bottom: .5em;
   margin-top: 0;
   margin-bottom: 1.25em;
+  font-weight: 300;
 }
 
 h1:before, h2:before {
@@ -17,7 +22,7 @@ h1:before, h2:before {
   position: absolute;
   bottom: 0;
   left: 0;
-  border-bottom: 3px solid;
+  border-bottom: thin solid;
   width: 1em;
 }
 
@@ -30,7 +35,6 @@ h2 {
 }
 
 h2.title {
-  font-weight: lighter;
   font-size: 1.25em;
   margin: -1.25em 0 .75em;
 }
@@ -119,6 +123,8 @@ body .page.contact-details {
 
 section {
   page-break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  break-inside: avoid;
   margin-bottom: 3em;
 }
 
@@ -128,7 +134,7 @@ section:last-of-type {
 }
 
 .contact-details h1:before {
-  border-bottom-width: 5px;
+  border-bottom-width: 3px;
 }
 
 .contact-details h3 {
@@ -177,19 +183,6 @@ a {
   text-decoration: none;
 }
 
-@media print {
-  .hidden, .editable-empty, [ng-click], button {
-    display: none !important;
-  }
-
-  body .page {
-    padding-top: 0;
-
-  }
-
-  body .page h2:first-of-type { margin-top: -.5em; }
-}
-
 .resume .summary-section {
   margin: 1em 0;
 }
@@ -198,19 +191,152 @@ a {
   font-weight: normal;
 }
 
-@page {
-  size: auto;
-  margin: 20mm 0 20mm 0;
-}
-
-.render button {
+.render button, .render .hidden {
   display: none !important;
 }
 
 .render .page {
+  padding-top: 0 !important;
+}
+
+.render .page:last-of-type {
+  page-break-after: avoid;
+}
+
+/*
+  Condensed theme
+*/
+
+.preview .condensed.resume {
+  margin: 1em auto;
+  box-shadow: 0 1px 5px #ccc;
+  background: white;
+  padding-top: 4em;
+  padding-bottom: 4em;
+}
+
+.condensed.resume {
+  position: relative;
+  height: 279.4mm;
+  width: 215.9mm;
+  padding: 0 2em;
+  font-size: 9pt;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+
+.condensed.resume .page {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  min-height: 0;
+  direction: ltr;
+  clear: none;
+  background: transparent;
+  box-shadow: none;
+  page-break-after: avoid;
+  box-sizing: border-box;
+}
+
+.condensed.resume .page.contact-details {
+  padding-top: 0 !important;
+}
+
+.condensed.resume .page.contact-details,
+.condensed.resume .page > section {
+  float: left;
+  width: 50%;
+  padding: 0 2em;
+  box-sizing: border-box;
+}
+
+.condensed.resume .page > section:nth-of-type(odd) {
+  float: right;
+}
+
+.condensed.resume .page.other-history section {
+  margin: 0 0 1em;
+  clear: none;
+}
+
+.condensed.resume h1:before {
+  display: none;
+}
+
+.condensed.resume h2 {
+  font-weight: 300;
+  font-size: 1.25em;
+}
+
+.condensed.resume .page h1 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.condensed.resume .page h2.title {
+  margin: -.333em 0 0;
+  line-height: 1.25em;
+}
+
+.condensed.resume .page h2.title:after {
+  display: table;
+  content: '';
+  clear: both;
+}
+
+.condensed.resume .page h2.title + section {
+  clear: both;
+  float: none;
+  width: auto;
   padding: 0;
 }
 
-.render .page h2:first-of-type {
-  margin-top: -2em !important;
+.condensed.resume .contact-details img.profile-img {
+  width: 5em;
+  float: left;
+  margin-right: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.condensed.resume .page figure.skills label {
+  margin: 0 0.3333em .25em 0;
+}
+
+.condensed.resume .page figure.skills label:after {
+  content: ", ";
+}
+
+.condensed.resume .page figure.skills label:last-of-type:after {
+  display: none;
+}
+
+.condensed.resume .page.contact-details h3 {
+  display: inline-block;
+  margin: 0 .5em .25em 0;
+}
+
+
+
+@page {
+  size: auto;
+}
+
+@media print {
+  .hidden, .editable-empty, [ng-click], button {
+    display: none !important;
+  }
+
+  body .page {
+    padding-top: 0;
+  }
+
+  body .page:last-of-type {
+    page-break-after: avoid;
+  }
+
+  .condensed.resume {
+    box-shadow: none !important;
+  }
 }
