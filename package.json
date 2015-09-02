@@ -1,0 +1,35 @@
+{
+  "name": "resume-builder",
+  "version": "1.0.0",
+  "description": "Resume builder --------------",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rowanhogan/resumebuilder.git"
+  },
+  "author": "Rowan Hogan (http://rowanhogan.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rowanhogan/resumebuilder/issues"
+  },
+  "homepage": "https://github.com/rowanhogan/resumebuilder#readme",
+  "devDependencies": {
+    "browserify": "^11.0.1",
+    "gulp": "^3.9.0",
+    "gulp-angular-templatecache": "^1.7.0",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-connect": "^2.2.0",
+    "gulp-gh-pages": "^0.5.2",
+    "gulp-sass": "^2.0.4",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "angular": "^1.4.5",
+    "angular-ui-router": "^0.2.15",
+    "angular-xeditable": "0.0.1",
+    "jquery": "^2.1.4"
+  }
+}

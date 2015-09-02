@@ -1,0 +1,52 @@
+<div class="preview">
+  <form class="form" ng-class="{ 'visible' : designVisible }" method="post" action="http://resume-pdf-renderer.herokuapp.com/render" ng-submit="prepareAndSubmitForm($event)">
+    <input type="hidden" name="html" value="" />
+    <input type="hidden" name="include_custom_fonts" value="true" />
+
+    <a ui-sref="username" class="button back-button">Back</a>
+
+    <fieldset>
+      <legend>Design</legend>
+
+      <span class='button' ng-class="{'active' : pictureHidden }" ng-if="resume.picture" ng-click="toggle('pictureHidden')">{{ booleanLabel('pictureHidden') }} Profile Picture</span>
+
+      <div class="fields">
+        <div class="form-field">
+          <label>Heading Font</label>
+          <select ng-model="headingFont" ng-options="option.name for option in fonts track by option.value">
+            <option selected="selected" value="">Default</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label>Body Font</label>
+          <select ng-model="bodyFont" ng-options="option.name for option in fonts track by option.value">
+            <option selected="selected" value="">Default</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label>Theme</label>
+          <select ng-model="theme" ng-change="togglePrintCss()">
+            <option selected="selected" value="">Minimal</option>
+            <option value="condensed">Condensed</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="buttons">
+      <button class="submit-button" type="submit">Generate PDF</button>
+      <button class="print-button" onclick="event.preventDefault(); window.print()">Print</button>
+    </fieldset>
+  </form>
+
+  <button class="toggle-form" ng-click="toggle('designVisible')">
+    <span ng-if="!designVisible">Edit / Generate</span>
+    <span ng-if="designVisible">Close</span>
+  </button>
+
+  <div class="wrapper">
+    <div class="resume" ng-class="theme" ng-include="'views/_resume.html'"></div>
+  </div>
+</div>
