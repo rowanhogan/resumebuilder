@@ -132,6 +132,7 @@ section {
   -webkit-column-break-inside: avoid;
   break-inside: avoid;
   margin-bottom: 3em;
+  position: relative;
 
   &:last-of-type {
     margin-bottom: 0;

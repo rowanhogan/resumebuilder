@@ -119,6 +119,16 @@
     </figure>
   </section>
 
+  <section ng-class="{ 'hidden' : interestsHidden }" ng-if="resume.interests.length">
+    <button class="toggle-section" ng-click="toggle('interestsHidden')">{{ booleanLabel('interestsHidden') }}</button>
+
+    <h2 editable-text="interestsTitle"> {{ interestsTitle || 'interests' }}</h2>
+
+    <figure class="skills">
+      <label ng-repeat="interest in resume.interests" editable-text="interest">{{ interest }}</label>
+    </figure>
+  </section>
+
   <section ng-class="{ 'hidden' : languagesHidden }" ng-if="resume.languages.length">
     <button class="toggle-section" ng-click="toggle('languagesHidden')">{{ booleanLabel('languagesHidden') }}</button>
 
@@ -131,6 +141,27 @@
         </h4>
 
         <h5 editable-text="item.proficiency">{{ item.proficiency }}</h5>
+      </li>
+    </ol>
+  </section>
+
+  <section ng-class="{ 'hidden' : publicationsHidden }" ng-if="resume.publications.length">
+    <button class="toggle-section" ng-click="toggle('publicationsHidden')">{{ booleanLabel('publicationsHidden') }}</button>
+
+    <h2 editable-text="publicationsTitle"> {{ publicationsTitle || 'publications' }}</h2>
+
+    <ol>
+      <li ng-repeat="publication in resume.publications">
+        <h4>
+          <span editable-text="publication.title">{{ publication.title }}</span>
+          <em editable-text="publication.date">{{ publication.date }}</em>
+        </h4>
+
+        <h5 editable-text="publication.publisher">{{ publication.publisher }}</h5>
+
+        <div class="description">
+          <small editable-textarea="publication.description" ng-bind-html="publication.description"></small>
+        </div>
       </li>
     </ol>
   </section>

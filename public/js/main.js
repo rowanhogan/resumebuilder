@@ -157,6 +157,9 @@ angular.module('clientApp')
       educationTitle: "Education",
       volunteeringTitle: "Volunteering",
       skillsTitle: "Skills",
+      recommendationsTitle: "Recommendations",
+      publicationsTitle: "Publications",
+      interestsTitle: "Interests",
       languagesTitle: "Languages"
     });
 
@@ -176,10 +179,10 @@ angular.module('clientApp')
       togglePrintCss: function () {
         var $style = $('#theme-css');
 
-        if ($scope.theme == 'condensed') {
-          $style.html('@page { margin: 0mm; }');
-        } else {
+        if ($scope.theme == '') {
           $style.html('@page { margin: 20mm 0 20mm 0; }');
+        } else {
+          $style.html('@page { margin: 0mm; }');
         }
 
         $timeout(function() {
