@@ -170,9 +170,10 @@ section li .remove-button {
   right: 0;
 }
 
-@media (min-width: 400px) {
-  .username-form {
-    font-size: 1.5em;
-    margin: .25em 0 -.5em;
+.username-form {
+  margin: .5em 0 -.5em;
+
+  @media (min-width: 420px) {
+    font-size: 1.25em;
   }
 }

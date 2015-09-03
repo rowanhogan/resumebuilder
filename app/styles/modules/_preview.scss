@@ -147,7 +147,11 @@
   }
 
   .logo {
-    width: 6em;
+    width: 5em;
+
+    + h1 {
+      font-size: 1.5em;
+    }
   }
 
   .fields {
