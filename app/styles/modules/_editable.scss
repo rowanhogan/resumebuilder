@@ -1,0 +1,119 @@
+
+.editable-wrap {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0;
+
+  .editable-controls, .editable-error {
+    margin-bottom: 0;
+  }
+
+  .editable-controls > {
+    input, select, textarea {
+      margin-bottom: 0;
+    }
+  }
+
+  .editable-input {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0;
+    line-height: inherit;
+    border-bottom: 2px dashed #ccc;
+    border-radius: 0;
+  }
+
+  textarea.editable-input {
+    height: 15em;
+    font-family: monospace;
+    width: 100%;
+    border: thin dashed #ccc;
+    padding: .5em;
+  }
+
+  &.editable-textarea {
+    white-space: normal;
+    display: block;
+  }
+}
+
+.editable-buttons {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 1rem;
+  position: relative;
+  z-index: 1000;
+
+  button {
+    margin-left: 5px;
+
+    &[type='submit'] {
+      background-color: $blue;
+    }
+  }
+}
+
+.editable-bstime {
+  .editable-input input[type=text] {
+    width: 46px;
+  }
+
+  .well-small {
+    margin-bottom: 0;
+    padding: 10px;
+  }
+}
+
+.editable-range output {
+  display: inline-block;
+  min-width: 30px;
+  vertical-align: top;
+  text-align: center;
+}
+
+.editable-color input[type=color] {
+  width: 50px;
+}
+
+.editable-checkbox label span, .editable-checklist label span, .editable-radiolist label span {
+  margin-left: 7px;
+  margin-right: 10px;
+}
+
+.editable-hide {
+  display: none !important;
+}
+
+.editable-click, a.editable-click {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+    color: #888;
+    cursor: pointer;
+
+    &:after {
+      content: '\270E';
+      display: inline-block;
+      position: absolute;
+      font-size: .9rem;
+      font-family: sans-serif;
+      font-weight: bold;
+      vertical-align: top;
+      margin-top: -.25em;
+      transform: rotateY(180deg);
+    }
+  }
+}
+
+.editable-empty, a.editable-empty {
+  color: #aaa;
+  text-decoration: none;
+  border-bottom: thin dotted;
+
+  &:hover, &:focus {
+    color: #aaa;
+    text-decoration: none;
+    border-bottom: thin dotted;
+  }
+}

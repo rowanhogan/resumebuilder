@@ -1,0 +1,178 @@
+[disabled] {
+  pointer-events: none;
+  cursor: default;
+  opacity: .5;
+}
+
+fieldset {
+  padding: 0;
+  margin: 0 0 .5em;
+  border: 0;
+
+  &:last-of-type {
+    border: 0;
+    margin-bottom: 0.25em;
+  }
+
+  &.buttons {
+    margin: 0 0 0 .5em;
+
+    button:first-child {
+      margin-left: -.5em !important;
+      margin-right: .5em !important;
+    }
+  }
+}
+
+legend {
+  font-weight: bold;
+  display: block;
+  padding: 0;
+  margin-bottom: .5em;
+}
+
+label {
+  display: block;
+  font-size: 75%;
+  text-transform: uppercase;
+  margin: 0 0 .25em;
+}
+
+input, button, textarea, select, table {
+  font-size: 100%;
+  font-family: inherit;
+}
+
+input, button, textarea, select, .button {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  line-height: 1.5em;
+  padding: .25em .5em;
+  margin: 0 0 .75em;
+  border: 0;
+  border-radius: .25em;
+  box-sizing: border-box;
+  opacity: .9;
+  background: white;
+
+  &:hover, &:focus {
+    outline: 0;
+    opacity: 1;
+  }
+}
+
+input.inline {
+  display: inline-block;
+  width: auto;
+  padding: 0;
+  border-bottom: thin dotted #ccc;
+  border-radius: 0;
+  max-width: 22em;
+  width: 6em;
+  min-width: 6em;
+}
+
+input, textarea {
+  background-color: white;
+}
+
+select {
+  height: 2em;
+}
+
+button, .button {
+  display: inline-block;
+  padding: .1875em .75em;
+  width: auto;
+  background-color: $blue;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  border: thin solid transparent;
+
+  &.active {
+    color: black;
+    border: thin solid;
+    background-color: transparent;
+  }
+}
+
+.form {
+  button, .button {
+    display: block;
+    width: 100%;
+    text-align: center;
+
+    &.print-button {
+      background-color: #aaa;
+    }
+
+    &.submit-button, &.print-button {
+      float: left;
+    }
+
+    &.submit-button {
+      width: 70%;
+    }
+
+    &.print-button {
+      width: 30%;
+    }
+  }
+}
+
+button.toggle-section {
+  position: absolute;
+  right: 0;
+  font-size: 90%;
+  z-index: 10;
+}
+
+.add-button {
+  text-transform: uppercase;
+  font-size: 80%;
+  padding: .333em .75em;
+
+  &:before {
+    content: '+';
+    font-family: monospace;
+    margin-right: .333em;
+    font-size: 1.125em;
+  }
+}
+
+.remove-button {
+  text-indent: -9999px;
+  width: 1em;
+  height: 1em;
+  padding: 0;
+  background-color: #aaa;
+  position: relative;
+  vertical-align: middle;
+  margin: 0 0 0 .5em;
+  cursor: pointer;
+
+  &:before {
+    content: "\00D7";
+    position: absolute;
+    text-indent: 0;
+    top: 50%;
+    left: 50%;
+    width: 1em;
+    line-height: .95em;
+    margin: -.5em;
+  }
+}
+
+section li .remove-button {
+  position: absolute;
+  right: 0;
+}
+
+@media (min-width: 400px) {
+  .username-form {
+    font-size: 1.5em;
+    margin: .25em 0 -.5em;
+  }
+}

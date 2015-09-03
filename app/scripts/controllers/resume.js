@@ -11,16 +11,15 @@ angular.module('clientApp')
 
     $scope.resume = preloaded.data;
 
-    var removeItemFromArray = function removeItemFromArray (item, array) {
-      var index = array.indexOf(item);
-      array.splice(index, 1);
+    if ($scope.resume.name) {
+      $('title').text($scope.resume.name + ' | Resume Builder');
     }
 
     var resizeDocument = function () {
       if ( $(window).width() > 700 ) {
         $('.preview .wrapper').css( 'transform', 'scale(' + ($(window).width() - $(".form").width()) / 950 + ')' );
       } else {
-        $('.preview .wrapper').css( 'transform', 'scale(' + $(window).width() / 865 + ')' );
+        $('.preview .wrapper').css( 'transform', 'scale(' + $(window).width() / 862.5 + ')' );
       }
 
       $('.preview').height( $('.preview .wrapper')[0].getBoundingClientRect().height )
@@ -34,6 +33,8 @@ angular.module('clientApp')
         resizeDocument();
       });
     });
+
+    $scope.pictureHidden = false;
 
     $scope.fonts = [
       { name: "Bitter", value: "Bitter" },
@@ -59,19 +60,48 @@ angular.module('clientApp')
     ];
 
     $scope.resume.websites.unshift({ name: "LinkedIn", link: $scope.resume.linkedin_url });
-    $scope.positions = $scope.resume.current_companies.concat($scope.resume.past_companies);
 
-    angular.extend($scope, {
-      pictureHidden: false,
-      workTitle: "Work",
-      educationTitle: "Education",
-      volunteeringTitle: "Volunteering",
-      skillsTitle: "Skills",
-      recommendationsTitle: "Recommendations",
-      publicationsTitle: "Publications",
-      interestsTitle: "Interests",
-      languagesTitle: "Languages"
+    if ($scope.resume.current_companies.length) {
+      $.map($scope.resume.current_companies, function(job) {
+        $.extend(job, { 'is_current': true });
+      });
+    }
+
+    $scope.resume.work = $scope.resume.current_companies.concat($scope.resume.past_companies);
+
+    // PLEASE NOTE: Metaprogramming ensues!
+
+    var sections = ['websites', 'work', 'education', 'volunteering', 'recommendations', 'publications', 'skills', 'interests', 'languages'];
+
+    var removeItemFromArray = function removeItemFromArray (item, array) {
+      var index = array.indexOf(item);
+      array.splice(index, 1);
+    }
+
+    $.each(sections, function (i, arrayName) {
+      var capitalizedName = arrayName[0].toUpperCase() + arrayName.substring(1);
+
+      $scope[arrayName + "Title"] = capitalizedName;
+
+      $scope["addTo" + capitalizedName] = function () {
+        $scope.resume[arrayName].push({});
+      }
+
+      $scope["removeFrom" + capitalizedName] = function (item) {
+        removeItemFromArray(item, $scope.resume[arrayName]);
+      };
     });
+
+    // Override add function for non-objects
+
+    $.each(['skills', 'interests'], function (i, arrayName) {
+      var capitalizedName = arrayName[0].toUpperCase() + arrayName.substring(1);
+
+      $scope["addTo" + capitalizedName] = function () {
+        $scope.resume[arrayName].push('New ' + arrayName.substring(0, arrayName.length - 1));
+      }
+    });
+
 
     angular.extend($scope, {
       toggle: function (key) {
@@ -79,12 +109,6 @@ angular.module('clientApp')
       },
       booleanLabel: function (key) {
         return ($scope[key] == true ? 'Show' : 'Hide');
-      },
-      addWebsite: function () {
-        $scope.resume.websites.push({ name: '', link: '' });
-      },
-      removeWebsite: function (item) {
-        removeItemFromArray(item, $scope.resume.websites);
       },
       togglePrintCss: function () {
         var $style = $('#theme-css');

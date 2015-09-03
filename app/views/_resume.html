@@ -21,13 +21,13 @@
     <tr ng-repeat="website in resume.websites">
       <th editable-text="website.name">{{ website.name || "Website Name" }}</th>
       <td>
-        <a ng-href="{{website.link}}" editable-text="website.link">{{ website.link || "example.com" }}</a>
+        <a ng-href="{{website.link}}" editable-text="website.link">{{ website.link || "example.com" | hideProtocol }}</a>
       </td>
-      <td class="hidden"><button class="remove-button" ng-click="removeWebsite(link)">Remove</button></td>
+      <td class="hidden"><button class="remove-button" ng-click="removeFromWebsites(link)">Remove</button></td>
     </tr>
   </table>
 
-  <button class="add-link" ng-click="addWebsite()">Add Link</button>
+  <button class="add-button" ng-click="addToWebsites()">Add Link</button>
 </div>
 
 <div class="page work-history" ng-class="{ 'hidden' : workHidden }">
@@ -37,33 +37,30 @@
     <h2 editable-text="workTitle"> {{ workTitle || 'Work' }}</h2>
 
     <ol>
-      <li ng-repeat="job in resume.current_companies">
+      <li ng-repeat="job in resume.work">
+        <button class="remove-button" ng-click="removeFromWork(job)">Remove</button>
+
         <h4>
-          <span editable-text="job.title">{{ job.title }}</span>
-          <em>{{ job.start_date | date : 'MMM y' }} -</em>
+          <span editable-text="job.title">{{ job.title || 'Position title' }}</span>
+          <em>
+            <span editable-text="job.start_date">{{ job.start_date || 'Start date' | date : 'MMM y' }}</span>
+            -
+            <span ng-if="!job.is_current" editable-text="job.end_date">{{ job.end_date || 'End date' | date : 'MMM y' }}</span>
+          </em>
         </h4>
 
-        <h5 editable-text="job.company">{{ job.company }}</h5>
+        <h5 editable-text="job.company">{{ job.company || 'Company' }}</h5>
 
         <div class="description">
-          <small editable-textarea="job.description_html" ng-bind-html="job.description_html"></small>
-        </div>
-      </li>
-
-      <li class="document-item" ng-repeat="job in resume.past_companies">
-        <h4>
-          <span editable-text="job.title">{{ job.title }}</span>
-          <em>{{ job.start_date | date : 'MMM y' }} - {{ job.end_date | date : 'MMM y' }}</em>
-        </h4>
-
-        <h5 editable-text="job.company">{{ job.company }}</h5>
-
-        <div class="description">
-          <small editable-textarea="job.description_html" ng-bind-html="job.description_html"></small>
+          <small ng-if="job.description_html" editable-textarea="job.description_html" ng-bind-html="job.description_html"></small>
+          <small ng-if="!job.description_html" editable-textarea="job.description">{{ job.description || "Job description" }}</small>
         </div>
       </li>
     </ol>
+
+    <button class="add-button" ng-click="addToWork()">Add position</button>
   </section>
+
 </div>
 
 <div class="page other-history" ng-class="{ 'hidden' : educationHidden && volunteeringHidden && skillsHidden }">
@@ -74,19 +71,23 @@
 
     <ol>
       <li ng-repeat="item in resume.education">
+        <button class="remove-button" ng-click="removeFromEducation(item)">Remove</button>
         <h4>
-          <span editable-text="item.degree">{{ item.degree }}</span>
-          <em editable-text="item.period">{{ item.period }}</em>
+          <span editable-text="item.degree">{{ item.degree || "Degree" }}</span>
+          <em editable-text="item.period">{{ item.period || "Period" }}</em>
         </h4>
 
-        <h5 editable-text="item.name">{{ item.name }}</h5>
+        <h5 editable-text="item.name">{{ item.name || "Institution name" }}</h5>
 
         <div class="description">
-          <small editable-textarea="item.description" ng-bind-html="item.description"></small>
+          <small editable-textarea="item.description">{{ item.description || "Description" }}</small>
         </div>
       </li>
     </ol>
+
+    <button class="add-button" ng-click="addToEducation()">Add item</button>
   </section>
+
 
   <section ng-class="{ 'hidden' : volunteeringHidden }" ng-if="resume.volunteering.length">
     <button class="toggle-section" ng-click="toggle('volunteeringHidden')">{{ booleanLabel('volunteeringHidden') }}</button>
@@ -95,19 +96,23 @@
 
     <ol>
       <li ng-repeat="item in resume.volunteering">
+        <button class="remove-button" ng-click="removeFromVolunteering(item)">Remove</button>
         <h4>
-          <span editable-text="item.title">{{ item.title }}</span>
-          <em editable-text="item.period">{{ item.period }}</em>
+          <span editable-text="item.title">{{ item.title || "Title" }}</span>
+          <em editable-text="item.period">{{ item.period || "Period" }}</em>
         </h4>
 
-        <h5 editable-text="item.name">{{ item.name }}</h5>
+        <h5 editable-text="item.name">{{ item.name || "Organization name" }}</h5>
 
         <div class="description">
-          <small editable-textarea="item.description" ng-bind-html="item.description"></small>
+          <small editable-textarea="item.description">{{ item.description || "Description" }}</small>
         </div>
       </li>
     </ol>
+
+    <button class="add-button" ng-click="addToVolunteering()">Add position</button>
   </section>
+
 
   <section ng-class="{ 'hidden' : skillsHidden }" ng-if="resume.skills.length">
     <button class="toggle-section" ng-click="toggle('skillsHidden')">{{ booleanLabel('skillsHidden') }}</button>
@@ -115,9 +120,15 @@
     <h2 editable-text="skillsTitle"> {{ skillsTitle || 'Skills' }}</h2>
 
     <figure class="skills">
-      <label ng-repeat="skill in resume.skills" editable-text="skill">{{ skill }}</label>
+      <label ng-repeat="skill in resume.skills track by $index" editable-text="skill">
+        <button class="remove-button" ng-click="removeFromSkills(skill)">Remove</button>
+        {{ skill }}
+      </label>
     </figure>
+
+    <button class="add-button" ng-click="addToSkills()">Add skill</button>
   </section>
+
 
   <section ng-class="{ 'hidden' : interestsHidden }" ng-if="resume.interests.length">
     <button class="toggle-section" ng-click="toggle('interestsHidden')">{{ booleanLabel('interestsHidden') }}</button>
@@ -125,9 +136,15 @@
     <h2 editable-text="interestsTitle"> {{ interestsTitle || 'interests' }}</h2>
 
     <figure class="skills">
-      <label ng-repeat="interest in resume.interests" editable-text="interest">{{ interest }}</label>
+      <label ng-repeat="interest in resume.interests track by $index" editable-text="interest">
+        <button class="remove-button" ng-click="removeFromInterests(interest)">Remove</button>
+        {{ interest }}
+      </label>
     </figure>
+
+    <button class="add-button" ng-click="addToInterests()">Add interest</button>
   </section>
+
 
   <section ng-class="{ 'hidden' : languagesHidden }" ng-if="resume.languages.length">
     <button class="toggle-section" ng-click="toggle('languagesHidden')">{{ booleanLabel('languagesHidden') }}</button>
@@ -136,35 +153,46 @@
 
     <ol class="inline">
       <li ng-repeat="item in resume.languages">
+        <button class="remove-button" ng-click="removeFromLanguages(item)">Remove</button>
+
         <h4>
-          <span editable-text="item.language">{{ item.language }}</span>
+          <span editable-text="item.language">{{ item.language || 'Language' }}</span>
         </h4>
 
-        <h5 editable-text="item.proficiency">{{ item.proficiency }}</h5>
+        <h5 editable-text="item.proficiency">{{ item.proficiency || 'Proficiency' }}</h5>
       </li>
     </ol>
+
+    <button class="add-button" ng-click="addToLanguages()">Add language</button>
   </section>
+
 
   <section ng-class="{ 'hidden' : publicationsHidden }" ng-if="resume.publications.length">
     <button class="toggle-section" ng-click="toggle('publicationsHidden')">{{ booleanLabel('publicationsHidden') }}</button>
 
-    <h2 editable-text="publicationsTitle"> {{ publicationsTitle || 'publications' }}</h2>
+    <h2 editable-text="publicationsTitle"> {{ publicationsTitle || 'Publications' }}</h2>
 
     <ol>
       <li ng-repeat="publication in resume.publications">
+        <button class="remove-button" ng-click="removeFromPublications(publication)">Remove</button>
+
         <h4>
-          <span editable-text="publication.title">{{ publication.title }}</span>
-          <em editable-text="publication.date">{{ publication.date }}</em>
+          <span editable-text="publication.title">{{ publication.title || "Title" }}</span>
+          <em editable-text="publication.date">{{ publication.date || "Date" }}</em>
         </h4>
 
-        <h5 editable-text="publication.publisher">{{ publication.publisher }}</h5>
+        <h5 editable-text="publication.publisher">{{ publication.publisher || "Publisher" }}</h5>
 
         <div class="description">
-          <small editable-textarea="publication.description" ng-bind-html="publication.description"></small>
+          <small ng-if="publication.description_html" editable-textarea="publication.description_html" ng-bind-html="publication.description_html"></small>
+          <small ng-if="!publication.description_html" editable-textarea="publication.description">{{ publication.description || "Description" }}</small>
         </div>
       </li>
     </ol>
+
+    <button class="add-button" ng-click="addToPublications()">Add publication</button>
   </section>
+
 </div>
 
 <link id="pdf-css" rel="stylesheet" type="text/css" href="/css/pdf.css" />

@@ -3,8 +3,6 @@
     <input type="hidden" name="html" value="" />
     <input type="hidden" name="include_custom_fonts" value="true" />
 
-    <a ui-sref="username" class="button back-button">Back</a>
-
     <fieldset>
       <legend>Design</legend>
 
@@ -40,6 +38,8 @@
       <button class="submit-button" type="submit">Generate PDF</button>
       <button class="print-button" onclick="event.preventDefault(); window.print()">Print</button>
     </fieldset>
+
+    <a ui-sref="username" class="button back-button">Back</a>
   </form>
 
   <button class="toggle-form" ng-click="toggle('designVisible')">

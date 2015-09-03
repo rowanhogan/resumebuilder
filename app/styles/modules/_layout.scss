@@ -1,0 +1,90 @@
+
+body {
+  font-size: 100%;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #444;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  -webkit-text-size-adjust: 100%;
+}
+
+.container {
+  margin: auto;
+  padding: 2em;
+  max-width: 30em;
+  text-align: center;
+
+  h1:before, h2:before {
+    left: 50%;
+    margin-left: -.5em;
+    border-color: $blue;
+  }
+
+  button {
+    display: block;
+    margin: 1em auto;
+    width: 6em;
+  }
+
+  @media screen and (min-height: 700px) {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -2em;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.monospace {
+  font-family: monospace;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+a {
+  color: black;
+}
+
+h1, h2 {
+  position: relative;
+  padding-bottom: .5em;
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom: 3px solid;
+    width: 1em;
+  }
+}
+
+.logo {
+  display: block;
+  margin: 2em auto;
+  max-width: 100%;
+  width: 10em;
+
+  path {
+    fill: $blue;
+  }
+}
+
+.flash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 1em;
+  color: red;
+  background-color: hsl(0, 100%, 95%);
+  border-bottom: thin solid hsl(0, 100%, 90%);
+}
