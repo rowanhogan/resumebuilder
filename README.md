@@ -4,9 +4,11 @@
 
 Build your PDF resume/CV with ease. Adds some design flair to data obtained from your Linkedin Profile, and allows you to customise the data.
 
-### Try it yourself: [resumebuilder.rowanhogan.com](http://resumebuilder.rowanhogan.com)
+### Try it out for yourself at [resumebuilder.rowanhogan.com](http://resumebuilder.rowanhogan.com).
 
 This is a little AngularJS app (combined with two separate Sinatra apps, see below).
+
+#### [Read more about the project](http://rowanhogan.com/articles/pdf-resume-builder/).
 
 If you want to run this locally, please note that this projects depends on:
 
