@@ -51,10 +51,12 @@ gulp.task('templates', function () {
 });
 
 gulp.task('watch', function() {
-  gulp.watch('app/**/*.html', ['templates']);
-  gulp.watch('app/**/*.js', ['browserify']);
-  gulp.watch('app/**/*.scss', ['sass']);
-})
+  gulp.watch('./app/**/*.html', ['templates']);
+  gulp.watch('./app/**/*.js', ['browserify']);
+  gulp.watch('./app/**/*.scss', ['sass']);
+  gulp.watch('./app/index.html', ['setup']);
+  gulp.watch('./app/images/*.**', ['setup']);
+});
 
 
 gulp.task('build',    ['setup', 'templates', 'browserify', 'sass']);
