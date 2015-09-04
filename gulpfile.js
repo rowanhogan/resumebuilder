@@ -2,6 +2,7 @@ var gulp          = require('gulp'),
     autoprefixer  = require('gulp-autoprefixer'),
     browserify    = require('browserify'),
     connect       = require('gulp-connect'),
+    fs            = require('fs'),
     ghPages       = require('gulp-gh-pages'),
     sass          = require('gulp-sass'),
     source        = require('vinyl-source-stream')
@@ -20,6 +21,12 @@ gulp.task('connect', function () {
     root: 'public',
     port: 4000
   });
+});
+
+gulp.task('setup', function () {
+  fs.writeFileSync('./public/CNAME', 'resumebuilder.rowanhogan.com');
+  gulp.src('./app/index.html').pipe(gulp.dest('./public'));
+  gulp.src('./app/images/*.**').pipe(gulp.dest('./public/images'));
 });
 
 gulp.task('ghpages', function() {
@@ -50,6 +57,6 @@ gulp.task('watch', function() {
 })
 
 
-gulp.task('build',    ['templates', 'browserify', 'sass']);
+gulp.task('build',    ['setup', 'templates', 'browserify', 'sass']);
 gulp.task('deploy',   ['build', 'ghpages']);
 gulp.task('default',  ['build', 'connect', 'watch']);
