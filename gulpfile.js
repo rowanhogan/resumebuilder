@@ -1,13 +1,12 @@
 var gulp          = require('gulp'),
-    autoprefixer  = require('gulp-autoprefixer'),
     browserify    = require('browserify'),
     connect       = require('gulp-connect'),
     fs            = require('fs'),
     ghPages       = require('gulp-gh-pages'),
-    sass          = require('gulp-sass'),
+    mkdirp        = require("mkdirp"),
+    plugins       = require('gulp-load-plugins')(),
     source        = require('vinyl-source-stream')
     templateCache = require('gulp-angular-templatecache');
-
 
 gulp.task('browserify', function() {
   return browserify('./app/scripts/app.js')
@@ -24,9 +23,17 @@ gulp.task('connect', function () {
 });
 
 gulp.task('setup', function () {
-  fs.writeFileSync('./public/CNAME', 'resumebuilder.rowanhogan.com');
   gulp.src('./app/index.html').pipe(gulp.dest('./public'));
-  gulp.src('./app/images/*.**').pipe(gulp.dest('./public/images'));
+
+  mkdirp('./public/', function (err) {
+    if (err) return cb(err)
+    fs.writeFileSync('./public/CNAME', 'resumebuilder.rowanhogan.com');
+  });
+});
+
+gulp.task('images', function () {
+  return gulp.src('./app/images/*.**')
+    .pipe(gulp.dest('./public/images'));
 });
 
 gulp.task('ghpages', function() {
@@ -36,8 +43,8 @@ gulp.task('ghpages', function() {
 
 gulp.task('sass', function () {
   gulp.src('./app/styles/*.scss')
-    .pipe(sass({outputStyle: 'compressed'}))
-    .pipe(autoprefixer())
+    .pipe(plugins.sass({outputStyle: 'compressed'}))
+    .pipe(plugins.autoprefixer())
     .pipe(gulp.dest('./public/css'));
 });
 
@@ -55,10 +62,11 @@ gulp.task('watch', function() {
   gulp.watch('./app/**/*.js', ['browserify']);
   gulp.watch('./app/**/*.scss', ['sass']);
   gulp.watch('./app/index.html', ['setup']);
-  gulp.watch('./app/images/*.**', ['setup']);
+  gulp.watch('./app/images/*.**', ['images']);
 });
 
-
-gulp.task('build',    ['setup', 'templates', 'browserify', 'sass']);
-gulp.task('deploy',   ['build', 'ghpages']);
+gulp.task('build',    ['setup', 'templates', 'images', 'sass', 'browserify']);
 gulp.task('default',  ['build', 'connect', 'watch']);
+
+gulp.task('deploy',   plugins.sequence('build', 'ghpages'));
+
