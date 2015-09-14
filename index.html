@@ -1,72 +1,73 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html xmlns:ng="http://angularjs.org" ng-app="clientApp" lang="en">
   <head>
-    <title>Home - Rowan Hogan dot com.</title>
-    <meta charset='utf-8'>
-    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <meta content='Full-stack designer from Brisbane, Australia.' name='description'>
-    <meta content='width=device-width, minimal-ui' name='viewport'>
-    <link href="assets/images/favicon.ico" rel="icon" type="image/ico" />
-    <link href="assets/stylesheets/application-051ee260.css" rel="stylesheet" />
-    <link href="assets/stylesheets/print-ecddfe38.css" rel="stylesheet" media="print" />
-    <script src="//use.typekit.net/arj3ujg.js"></script>
-    <script>
-      try{Typekit.load();}catch(e){}
-    </script>
-    <!--[if lt IE 9]>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
-    <![endif]-->
+    <title>Resume Builder</title>
+
+    <base href="/">
+    <meta charset="utf-8">
+    <meta name="fragment" content="!">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width = device-width">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-title" content="Resume Builder">
+    <meta name="application-name" content="Resume Builder">
+    <meta name="msapplication-TileColor" content="#00aaff">
+    <meta name="msapplication-TileImage" content="/images/mstile-144x144.png">
+    <meta name="theme-color" content="#00aaff">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" >
+    <link rel="manifest" href="/images/manifest.json">
+
+    <meta name="description" content="Create a simple, beautiful PDF resume." />
+    <meta property="og:description" content="Create a simple, beautiful PDF resume." />
+    <meta property="og:image" content="https://res.cloudinary.com/rowanhogan/image/upload/v1441342831/icon_ixh9qb.png" />
+
+    <link href="/css/style.css" rel="stylesheet" type="text/css"></link>
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" rel="stylesheet" type="text/css"></link>
   </head>
-  <body class='index'>
-    <header class='site-header'>
-      <div class='container'>
-        <a class="logo" href="/"><svg style='enable-background:new -82.8 0 290.3 512;' viewBox='-82.8 0 290.3 512' width='30' x='0px' y='0px'>
-          <g>
-            <path d='M174.7,189.1c-5.5-5.9-11.8-11-18.7-15.5l-67,67c7.4,3.5,14.1,8.6,19.3,15.9c6.8,9.6,11.1,22.9,11.1,40.6v215l87.9-87.7&#x000A;		V284.2C207.3,245.3,196.2,212,174.7,189.1z'></path>
-            <path d='M89.6,155.7c-6.1,0-12.2,0.6-18.2,1.6L-82.8,311.5v37.1L108.8,157C102.7,156.2,96.3,155.7,89.6,155.7z'></path>
-            <polygon points='5.1,159.7 5.1,0.7 -82.8,88.4 -82.8,159.7 -31.9,159.7 -82.8,210.6 -82.8,247.7 5.1,159.8 	'></polygon>
-            <polygon points='-44.4,512 5.1,462.5 5.1,425.3 -81.5,512 	'></polygon>
-            <polygon points='-82.8,449.5 5.1,361.6 5.1,324.4 -82.8,412.3 	'></polygon>
-          </g>
-        </svg>
-        </a>
-        <nav class='site-nav'>
-          <a href="/feed">Feed</a>
-          <a href="/projects">Projects</a>
-          <a href="/articles">Articles</a>
-          <a href="/resume">R&eacute;sum&eacute;</a>
-        </nav>
-      </div>
-    </header>
-    <section class='site-main'>
-      <div class='container'>
-        <div class='blurb'>
-          <h3>Hi, I'm Rowan.</h3>
-          <p>I'm a web designer &amp; developer from Brisbane, Australia, currently living in Canada.</p>
-          <p>Read more about some of the <a href="/projects">projects</a> I've been involved with, or check out my <a href="/resume">rèsumè</a>.</p>
-        </div>
-      </div>
-    </section>
-    <footer class='site-footer'>
-      <div class='container'>
-        <nav class='site-nav'>
-          <a class="github" href="https://github.com/rowanhogan">GitHub</a>
-          <a class="dribbble" href="http://dribbble.com/rowanhogan">Dribbble</a>
-          <a class="linkedin" href="http://www.linkedin.com/in/rowanhogan">LinkedIn</a>
-          <a class="twitter" href="https://twitter.com/rowanhogan">Twitter</a>
-          <a class="lastfm" href="http://www.last.fm/user/rehogan">Last.fm</a>
-        </nav>
-      </div>
-    </footer>
-    <script src="assets/javascripts/application-aedf1007.js"></script>
+  <body>
+    <div ng-cloak class="flash" ng-if="flash">{{ flash }}</div>
+
+    <div ng-cloak ng-if="loading" class="loading-wrapper">
+      <svg class="logo" width="150" style="enable-background:new 0 0 512 512;" viewBox="0 0 512 512" x="0px" y="0px">
+        <path d="M458.9,114.5c-11.1-15.1-26.6-32.8-43.6-49.9S380.6,32.1,365.4,21C339.7,2.2,327.2,0,320,0H72C49.9,0,32,17.9,32,40v432 c0,22.1,17.9,40,40,40h368c22.1,0,40-17.9,40-40V160C480,152.8,477.8,140.3,458.9,114.5z M392.7,87.3c15.4,15.3,27.4,29.2,36.3,40.7 h-77V51C363.5,59.9,377.3,72,392.7,87.3L392.7,87.3z M448,472c0,4.3-3.7,8-8,8H72c-4.3,0-8-3.7-8-8V40c0-4.3,3.7-8,8-8h248v112 c0,8.8,7.2,16,16,16h112V472z"/>
+        <path d="M368,416H144c-8.8,0-16-7.2-16-16s7.2-16,16-16h224c8.8,0,16,7.2,16,16S376.8,416,368,416z"/>
+        <path d="M368,352H144c-8.8,0-16-7.2-16-16s7.2-16,16-16h224c8.8,0,16,7.2,16,16S376.8,352,368,352z"/>
+        <path d="M368,288H144c-8.8,0-16-7.2-16-16s7.2-16,16-16h224c8.8,0,16,7.2,16,16S376.8,288,368,288z"/>
+        <path d="M237.5,189.5v8.6c-3.4,0.7-6.5,1.1-9.1,1.4c-2.6,0.2-5.2,0.3-7.6,0.3c-3.3,0-6.4-0.2-9.1-0.6c-2.7-0.4-5.1-1.1-7.2-2.2 c-2.1-1-3.8-2.5-5.2-4.4s-2.4-4.3-2.9-7.3l-4.5-22.9c-1.2-5.6-3.2-9.5-6-11.7c-2.9-2.2-7.2-3.3-12.9-3.3h-5.3c0,6.8,0,13.5,0,20.3 s0.1,13.5,0.3,20.3l14.3,1.6v8.6h-53.8v-8.6l14-1.6c0.2-7.1,0.3-14.3,0.3-21.5s0-14.5,0-21.8v-6c0-7.2,0-14.5,0-21.6 c0-7.2-0.1-14.4-0.3-21.6l-14-1.6v-8.6h53.8c13,0,23.1,2.5,30.3,7.6s10.8,12,10.8,20.9c0,2.8-0.4,5.6-1.3,8.5s-2.3,5.8-4.3,8.5 s-4.7,5.1-7.9,7.2c-3.3,2.1-7.3,3.8-12.2,5.1c5.5,1.6,10.1,4.3,13.6,8c3.6,3.7,6,8.7,7.2,14.9l4.7,22.1L237.5,189.5z M175.3,138 c4.4,0,8.1-0.6,11.1-1.8s5.5-2.8,7.4-4.8s3.3-4.4,4.1-7.2s1.3-5.7,1.3-8.8c0-6.9-1.9-12.1-5.7-15.5s-9.9-5.2-18.3-5.2H168 c-0.2,7.1-0.3,14.3-0.3,21.5s0,14.5,0,21.8H175.3z"/>
+      </svg>
+
+      <label>Loading</label>
+    </div>
+
+    <div ui-view="content" autoscroll="false"></div>
+
+    <script src="/js/main.js" type="text/javascript"></script>
+    <script src="/js/templates.js" type="text/javascript"></script>
+
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      
-      ga('create', 'UA-42849478-1', 'auto');
+
+      ga('create', 'UA-42849478-2', 'auto');
       ga('send', 'pageview');
+
     </script>
+
+    <link rel="stylesheet" type="text/css" href="/css/pdf.css">
   </body>
 </html>
