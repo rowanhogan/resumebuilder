@@ -27,12 +27,15 @@ angular.module('clientApp')
 
     $timeout(function() {
       resizeDocument();
-      $('.wrapper').append('<link rel="stylesheet" type="text/css" href="http://rowanhogan.github.io/resumebuilder/css/fonts.css">');
 
       $(window).resize(function() {
         resizeDocument();
       });
     });
+
+    $timeout(function() {
+      $('.wrapper').append('<link rel="stylesheet" type="text/css" href="http://rowanhogan.github.io/resumebuilder/css/fonts.css">');
+    }, 1500);
 
     $scope.pictureHidden = false;
 
@@ -127,12 +130,11 @@ angular.module('clientApp')
         event.preventDefault();
 
         var $form = $(event.target),
-            $wrapper = $('.wrapper').clone(),
-            pdf_css_url = "http://resumebuilder.rowanhogan.com/css/pdf.css";
+            $wrapper = $('.wrapper').clone();
 
         $wrapper.find('.editable-empty, .hidden, form, button, input').remove();
         $wrapper.find('.resume').addClass('render');
-        $wrapper.find('#pdf-css').attr('href', pdf_css_url)
+        $wrapper.find('.resume').append('<link rel="stylesheet" type="text/css" href="http://rowanhogan.github.io/resumebuilder/css/pdf.css">');
 
         $form.find('input[name="html"]').val( $wrapper.html() );
         $form.submit();

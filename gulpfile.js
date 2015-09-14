@@ -1,12 +1,9 @@
 var gulp          = require('gulp'),
     browserify    = require('browserify'),
-    connect       = require('gulp-connect'),
     fs            = require('fs'),
-    ghPages       = require('gulp-gh-pages'),
     mkdirp        = require("mkdirp"),
     plugins       = require('gulp-load-plugins')(),
-    source        = require('vinyl-source-stream')
-    templateCache = require('gulp-angular-templatecache');
+    source        = require('vinyl-source-stream');
 
 gulp.task('browserify', function() {
   return browserify('./app/scripts/app.js')
@@ -16,7 +13,7 @@ gulp.task('browserify', function() {
 });
 
 gulp.task('connect', function () {
-  connect.server({
+  plugins.connect.server({
     root: 'public',
     port: 4000
   });
@@ -38,7 +35,7 @@ gulp.task('images', function () {
 
 gulp.task('ghpages', function() {
   return gulp.src('./public/**/*')
-    .pipe(ghPages());
+    .pipe(plugins.ghPages());
 });
 
 gulp.task('sass', function () {
@@ -50,7 +47,7 @@ gulp.task('sass', function () {
 
 gulp.task('templates', function () {
   return gulp.src('./app/views/**/*.html')
-    .pipe(templateCache({
+    .pipe(plugins.angularTemplatecache({
       root:   'views/',
       module: 'clientApp'
     }))
