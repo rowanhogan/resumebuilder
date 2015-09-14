@@ -8,7 +8,6 @@ html {
   size: auto;
 }
 
-
 .resume {
   font-size: 11pt;
 }
@@ -62,7 +61,7 @@ img.profile-img {
   margin: 0 0 2em;
 
   &.hidden {
-    display: none;
+    display: none !important;
   }
 }
 
