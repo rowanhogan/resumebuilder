@@ -64,7 +64,7 @@
 </div>
 
 <div class="page other-history" ng-class="{ 'hidden' : educationHidden && volunteeringHidden && skillsHidden }">
-  <section ng-class="{ 'hidden' : educationHidden }" ng-if="resume.education.length">
+  <section ng-class="{ 'hidden' : educationHidden }">
     <button class="toggle-section" ng-click="toggle('educationHidden')"> {{ booleanLabel('educationHidden') }}</button>
 
     <h2 editable-text="educationTitle"> {{ educationTitle || 'Education' }}</h2>
@@ -89,7 +89,7 @@
   </section>
 
 
-  <section ng-class="{ 'hidden' : volunteeringHidden }" ng-if="resume.volunteering.length">
+  <section ng-class="{ 'hidden' : volunteeringHidden }">
     <button class="toggle-section" ng-click="toggle('volunteeringHidden')">{{ booleanLabel('volunteeringHidden') }}</button>
 
     <h2 editable-text="volunteeringTitle"> {{ volunteeringTitle || 'Volunteering' }}</h2>
@@ -114,7 +114,7 @@
   </section>
 
 
-  <section ng-class="{ 'hidden' : skillsHidden }" ng-if="resume.skills.length">
+  <section ng-class="{ 'hidden' : skillsHidden }">
     <button class="toggle-section" ng-click="toggle('skillsHidden')">{{ booleanLabel('skillsHidden') }}</button>
 
     <h2 editable-text="skillsTitle"> {{ skillsTitle || 'Skills' }}</h2>
@@ -130,7 +130,7 @@
   </section>
 
 
-  <section ng-class="{ 'hidden' : interestsHidden }" ng-if="resume.interests.length">
+  <section ng-class="{ 'hidden' : interestsHidden }">
     <button class="toggle-section" ng-click="toggle('interestsHidden')">{{ booleanLabel('interestsHidden') }}</button>
 
     <h2 editable-text="interestsTitle"> {{ interestsTitle || 'interests' }}</h2>
@@ -146,7 +146,7 @@
   </section>
 
 
-  <section ng-class="{ 'hidden' : languagesHidden }" ng-if="resume.languages.length">
+  <section ng-class="{ 'hidden' : languagesHidden }">
     <button class="toggle-section" ng-click="toggle('languagesHidden')">{{ booleanLabel('languagesHidden') }}</button>
 
     <h2 editable-text="languagesTitle"> {{ languagesTitle || 'Languages' }}</h2>
@@ -167,7 +167,7 @@
   </section>
 
 
-  <section ng-class="{ 'hidden' : publicationsHidden }" ng-if="resume.publications.length">
+  <section ng-class="{ 'hidden' : publicationsHidden }">
     <button class="toggle-section" ng-click="toggle('publicationsHidden')">{{ booleanLabel('publicationsHidden') }}</button>
 
     <h2 editable-text="publicationsTitle"> {{ publicationsTitle || 'Publications' }}</h2>

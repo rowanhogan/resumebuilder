@@ -1,15 +1,35 @@
 
 angular.module('clientApp')
-  .controller('ResumeCtrl', function($scope, $rootScope, $state, preloaded, $timeout) {
+  .controller('ResumeCtrl', function($scope, $rootScope, $state, $timeout) {
     $rootScope.flash = null;
 
-    if (preloaded.status === 400) {
-      $rootScope.flash = preloaded.data.message;
-      $state.go('username');
-      return false
-    }
-
-    $scope.resume = preloaded.data;
+    $scope.resume = {
+      name: "Your Name",
+      first_name: null,
+      last_name: null,
+      title: "",
+      location: null,
+      country: null,
+      industry: null,
+      summary: null,
+      picture: "https://placeholdit.imgix.net/~text?txtsize=100&bg=333333&txtclr=aaaaaa&txt=IMAGE&w=512&h=512",
+      projects: [ ],
+      linkedin_url: "",
+      education: [ ],
+      volunteering: [ ],
+      recommendations: [ ],
+      websites: [ ],
+      groups: [ ],
+      languages: [ ],
+      skills: [ ],
+      interests: [ ],
+      publications: [ ],
+      certifications: [ ],
+      organizations: [ ],
+      past_companies: [ ],
+      current_companies: [ ],
+      recommended_visitors: [ ]
+    };
 
     if ($scope.resume.name) {
       $('title').text($scope.resume.name + ' | Resume Builder');

@@ -83,7 +83,7 @@ select {
 
 button, .button {
   display: inline-block;
-  padding: .1875em .75em;
+  padding: .5em 1.25em;
   width: auto;
   background-color: $blue;
   color: white;
@@ -110,6 +110,7 @@ button, .button {
 
     &.submit-button, &.print-button {
       float: left;
+      padding: .333em 0;
     }
 
     &.submit-button {

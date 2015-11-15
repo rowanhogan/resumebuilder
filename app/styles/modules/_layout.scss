@@ -13,6 +13,11 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
+p.blurb {
+  font-size: 1.2em;
+  margin-bottom: .75em;
+}
+
 .container {
   margin: auto;
   padding: 2em;
@@ -107,4 +112,3 @@ h1, h2 {
   display: block;
   margin: 3em 0 1em;
 }
-

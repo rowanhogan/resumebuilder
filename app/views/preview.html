@@ -6,7 +6,11 @@
     <fieldset>
       <legend>Design</legend>
 
-      <span class='button' ng-class="{'active' : pictureHidden }" ng-if="resume.picture" ng-click="toggle('pictureHidden')">{{ booleanLabel('pictureHidden') }} Profile Picture</span>
+      <div class="form-field">
+        <label>Profile image</label>
+        <input placeholder="Image URL" ng-model="resume.picture" type='url'>
+        <span class='button' ng-class="{'active' : pictureHidden }" ng-if="resume.picture" ng-click="toggle('pictureHidden')">{{ booleanLabel('pictureHidden') }} Profile Picture</span>
+      </div>
 
       <div class="fields">
         <div class="form-field">

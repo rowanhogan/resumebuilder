@@ -37,16 +37,11 @@ clientApp.config(function($stateProvider, $locationProvider, $urlRouterProvider,
 
   $stateProvider.state('preview', {
     title: 'Preview',
-    url: '/preview/:username',
+    url: '/preview',
     views: {
       'content@':   {
         templateUrl: 'views/preview.html',
-        controller: 'ResumeCtrl',
-        resolve: {
-          preloaded: function(Profile, $stateParams) {
-            return Profile.getProfile($stateParams.username);
-          }
-        }
+        controller: 'ResumeCtrl'
       }
     }
   });
